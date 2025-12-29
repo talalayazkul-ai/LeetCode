@@ -5,19 +5,22 @@ class Solution(object):
         :type t: str
         :rtype: bool
         """
-        freqs = {}
-        freqt = {}
         if len(s) != len(t):
             return False
 
+        freq = {}
+
         for ch in s:
-            freqs[ch] = freqs.get(ch, 0) + 1
+            freq[ch] = freq.get(ch, 0) + 1
 
         for ch in t:
-            freqt[ch] = freqt.get(ch, 0) + 1
+            if ch not in freq:
+                return False
+            freq[ch] -= 1
+            if freq[ch] < 0:
+                return False
 
-        return freqs == freqt
-         
+        return True
 
 
         
