@@ -6,17 +6,10 @@ class Solution(object):
         """
         from collections import defaultdict
         
-        anagrams = defaultdict(list)
+        groups = defaultdict(list)
 
-        for s in strs:
-            freq = [0] * 26
+        for word in strs:
+            key = ''.join(sorted(word))
+            groups[key].append(word)
 
-            for ch in s:
-                freq[ord(ch) - ord("a")] += 1
-                
-
-            key = tuple(freq)
-            anagrams[key].append(s)
-
-        return list(anagrams.values())
-        
+        return list(groups.values())
